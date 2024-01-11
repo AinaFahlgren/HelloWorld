@@ -1,22 +1,23 @@
-name: Run Unit tests on Push
+name: Run Unit Tests on Push
 on:
-	push:
-		branches:
+  push:
+    branches:
       - main
+
 jobs:
-	build:
-		runs-on: ubuntu-latest
-			
-		steps:
-			- uses: actions/checkout@v3
+  build:
+    runs-on: ubuntu-latest
 
-			- name: Set up .NET
-				uses: actions/setup-dotnet@v3
-				with:
-					dotnet-version: ‘6.x’
-			- name: restore dependencies
-				run: dotnet restore
+    steps:
+    - uses: actions/checkout@v3
 
+    - name: Set up .NET 
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.x'
 
-			- name: Run Unit tests
-				run: dotnet test
+    - name: restore dependencies
+      run: dotnet restore
+
+    - name: Run Unit tests
+      run: dotnet test
